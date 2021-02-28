@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+<style>
+    .itemClass{
+        text-decoration: none;
+        color: #222222;
+    }
+
+    .itemClass:hover{
+        text-decoration: none;
+        color: #222222;
+    }
+</style>
+<div class="example-wrapper">
+    <h1>{{ title }}</h1>
+    <hr>
+
+    {% set sum = 0 %}
+    {% for item in items %}
+    <div class="col-md-12">
+            <div class="card mb-12 shadow-sm">
+                <div class="card-body">
+                    <h4>{{ item.shopItem.title }}</h4>
+                    <p class="card-text">{{ item.shopItem.description }}</p>
+                    <h5>{{ item.shopItem.price }} руб</h5>
+                    {% set sum = sum + item.shopItem.price %}
+                </div>
+            </div>
+    </div>
+    {% endfor %}
+
+    <hr>
+    <h4>Итого: {{ sum }}</h4>
+    <a href="{{ path('shopOrder') }}" class="float-right btn btn-success mt-2">Оформить заказ</a>
+</div>
+{% endblock %}
